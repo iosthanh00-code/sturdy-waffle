@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Robot Haptic Control Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="app-container">
+
+    <button class="dev-mode-toggle" id="dev-btn" onclick="toggleDev()">[ Dev Mode: Off ]</button>
+
+    <div class="robot-card">
+        <h2>Haptic Interface</h2>
+
+        <div class="control-group">
+            <label>Mức độ phản hồi</label>
+            <div class="grid-3">
+                <button class="btn-level" onclick="runHaptic('light', this)">Nhẹ</button>
+                <button class="btn-level" onclick="runHaptic('medium', this)">Vừa</button>
+                <button class="btn-level" onclick="runHaptic('high', this)">Mạnh</button>
+            </div>
+        </div>
+
+        <div class="control-group slider-container" style="position: relative;">
+            <label>Cường độ giữ</label>
+            <span class="val-badge" id="hold-txt">20.00</span>
+            <input type="range" min="100" max="4000" value="2000" oninput="updateHaptic('hold', this.value)">
+        </div>
+
+        <div class="control-group slider-container" style="position: relative;">
+            <label>Nhịp chạm liên tiếp</label>
+            <span class="val-badge" id="seq-txt">20.00</span>
+            <input type="range" min="100" max="4000" value="2000" oninput="updateHaptic('seq', this.value)">
+        </div>
+
+        <div class="dev-panel">
+            <div class="status-bar">
+                <div id="status-dot" class="dot"></div>
+                <span>Status: <span id="status-text" style="color: #666;">Disconnected</span></span>
+            </div>
+            <button class="btn-connect" onclick="connectRobot()">Kết nối UUID</button>
+            <div id="console-log">Ready for system link...</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
